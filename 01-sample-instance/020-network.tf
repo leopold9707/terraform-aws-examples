@@ -13,6 +13,7 @@ resource "aws_vpc" "terraform" {
 resource "aws_subnet" "http" {
   vpc_id     = aws_vpc.terraform.id
   cidr_block = var.network_http["cidr"]
+  availability_zone = "ap-northeast-2a"
   tags = {
     Name = "subnet-http"
   }
