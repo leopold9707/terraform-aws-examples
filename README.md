@@ -11,13 +11,29 @@ If you are using Terraform 0.11 you can use versions v1.*.
 
 
 ## AWS authentification
+
+### (recommend) Using credential file
+
+credential file 사용을 가정하여 코드가 작성되어있습니다. ~/.aws/credentials 위치에 접속정보를 담으면 사용할 수 있습니다.
+
+```
+$ mkdir -p  ~/.aws
+$ cd ~/.aws
+$ vi credentials
+[default]
+aws_access_key_id=AB81...
+aws_secret_access_key=MFSh7...
+```
+
+### Using AWS provider.tf
+
 The AWS provider is used to interact with the many resources supported by AWS. The provider needs to be configured with the proper credentials before it can be used.
 
 ```
 provider "aws" {
   access_key = "secret"
   secret_key = "secret"
-  region     = "us-east-1"
+  region     = "ap-northeast-2"
 }
 ```
 
