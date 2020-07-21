@@ -15,6 +15,7 @@ resource "aws_instance" "http" {
   root_block_device {
     volume_type = "standard"
     volume_size = var.spec[each.value.role].root_volume_size
+    delete_on_termination = true
   }
   tags = {
     Name = each.key
