@@ -8,7 +8,7 @@ output VPC_2_Admin_fip {
 
 output host_private_ip_list {
   value = {
-    for instance in aws_instance.instances:
-    instance.tags.Name => instance.private_ip
+    for host in var.hosts:
+    host => aws_instance.instances[host].private_ip
   }
 }
