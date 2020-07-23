@@ -11,6 +11,7 @@ resource "aws_instance" "instances" {
     aws_security_group.terraform-default[var.subnet_info[each.value.subnet].vpc].id
   ]
   subnet_id = aws_subnet.subnets[each.value.subnet].id
+  associate_public_ip_address = true
   root_block_device {
     volume_type = "standard"
     volume_size = var.spec[each.value.role].root_volume_size
@@ -38,7 +39,7 @@ resource "aws_volume_attachment" "additional_storage" {
   volume_id    = aws_ebs_volume.additional_storage[each.key].id
   instance_id  = aws_instance.instances[each.key].id
 }
-
+/*
 # Attach floating ip on Admin instance
 resource "aws_eip" "vpc_1_admin" {
   vpc        = true
@@ -56,4 +57,4 @@ resource "aws_eip" "vpc_2_admin" {
   tags = {
     Name = "VPC_2_Admin_fip"
   }
-}
+}*/
