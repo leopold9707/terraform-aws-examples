@@ -6,7 +6,7 @@ resource "aws_instance" "instances" {
   
   ami           = var.centos7
   instance_type = var.spec[each.value.role].flavor
-  key_name      = var.user_key
+  key_name      = aws_key_pair.terraform.key_name #var.user_key
   vpc_security_group_ids = [
     aws_security_group.terraform-default[var.subnet_info[each.value.subnet].vpc].id
   ]
