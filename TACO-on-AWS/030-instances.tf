@@ -12,6 +12,7 @@ resource "aws_instance" "instances" {
   ]
   subnet_id = aws_subnet.subnets[each.value.subnet].id
   associate_public_ip_address = true
+  user_data = file("first-boot.sh")
   root_block_device {
     volume_type = "standard"
     volume_size = var.spec[each.value.role].root_volume_size

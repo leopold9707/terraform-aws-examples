@@ -3,19 +3,19 @@ variable "spec" {
   default = {
 ### role: Admin, spec: flavor / root_disk / attached_volume
     Admin = {
-      flavor = "t2.2xlarge"
+      flavor = "t2.medium"
       root_volume_size = "160"
       additional_volume = "100"
     }
-### role: K8s_Primary, spec: flavor / root_disk / attached_volume
-    K8s_Primary = {
-      flavor = "t2.2xlarge"
+### role: K8s_primary, spec: flavor / root_disk / attached_volume
+    K8s_primary = {
+      flavor = "t2.medium"
       root_volume_size = "160"
-      additional_volume = "100"
+      additional_volume = "50"
     }
-### role: K8s_Replica, spec: flavor / root_disk / attached_volume
-    K8s_Replica = {
-      flavor = "t2.2xlarge"
+### role: K8s_replica, spec: flavor / root_disk / attached_volume
+    K8s_replica = {
+      flavor = "t2.medium"
       root_volume_size = "160"
       additional_volume = "100"
     }
@@ -26,62 +26,62 @@ variable "spec" {
 variable "hosts" {
   default = [
 ### VMs in VPC-1
-    "Primary-101",
-    "Primary-102",
-    "Primary-103",
-    "Replica-101",
-    "Replica-102",
+    "primary-101",
+    "primary-102",
+    "primary-103",
+    "replica-101",
+    "replica-102",
 ### VMs in VPC-2
-    "Primary-201",
-    "Primary-202",
-    "Primary-203",
-    "Replica-201",
-    "Replica-202"
+    "primary-201",
+    "primary-202",
+    "primary-203",
+    "replica-201",
+    "replica-202"
   ]
 }
 
 ### define host's role and subnet
 variable "host_info" {
   default = {
-    Primary-101 = {
+    primary-101 = {
       role   = "Admin"
       subnet = "public_subnet_10_0_1"
     }
-    Primary-102 = {
-      role   = "K8s_Primary"
+    primary-102 = {
+      role   = "K8s_primary"
       subnet = "public_subnet_10_0_1"
     }
-    Primary-103 = {
-      role   = "K8s_Primary"
-      subnet = "public_subnet_10_0_2"
-    }
-    Replica-101 = {
-      role   = "K8s_Replica"
+    primary-103 = {
+      role   = "K8s_primary"
       subnet = "public_subnet_10_0_1"
     }
-    Replica-102 = {
-      role   = "K8s_Replica"
-      subnet = "public_subnet_10_0_2"
+    replica-101 = {
+      role   = "K8s_replica"
+      subnet = "public_subnet_10_0_1"
     }
-    Primary-201 = {
+    replica-102 = {
+      role   = "K8s_replica"
+      subnet = "public_subnet_10_0_1"
+    }
+    primary-201 = {
       role   = "Admin"
-      subnet = "public_subnet_250_0_1"
+      subnet = "public_subnet_20_0_1"
     }
-    Primary-202 = {
-      role   = "K8s_Primary"
-      subnet = "public_subnet_250_0_1"
+    primary-202 = {
+      role   = "K8s_primary"
+      subnet = "public_subnet_20_0_1"
     }
-    Primary-203 = {
-      role   = "K8s_Primary"
-      subnet = "public_subnet_250_0_2"
+    primary-203 = {
+      role   = "K8s_primary"
+      subnet = "public_subnet_20_0_1"
     }
-    Replica-201 = {
-      role   = "K8s_Replica"
-      subnet = "public_subnet_250_0_1"
+    replica-201 = {
+      role   = "K8s_replica"
+      subnet = "public_subnet_20_0_1"
     }
-    Replica-202 = {
-      role   = "K8s_Replica"
-      subnet = "public_subnet_250_0_2"
+    replica-202 = {
+      role   = "K8s_replica"
+      subnet = "public_subnet_20_0_1"
     }
   }
 }
@@ -100,7 +100,7 @@ variable "vpc_info" {
       vpc_cidr = "10.0.0.0/16"
     }
     VPC-2 = {
-      vpc_cidr = "250.0.0.0/16"
+      vpc_cidr = "20.0.0.0/16"
     }
   }
 }
@@ -109,9 +109,9 @@ variable "vpc_info" {
 variable "subnets" {
   default = [
     "public_subnet_10_0_1",
-    "public_subnet_10_0_2",
-    "public_subnet_250_0_1",
-    "public_subnet_250_0_2"
+#    "public_subnet_10_0_2",
+    "public_subnet_20_0_1",
+#    "public_subnet_20_0_2"
   ]
 }
 
@@ -127,14 +127,14 @@ variable "subnet_info" {
       cidr              = "10.0.2.0/24"
       availability_zone = "ap-northeast-2c"
     }
-    public_subnet_250_0_1 = {
+    public_subnet_20_0_1 = {
       vpc               = "VPC-2"
-      cidr              = "250.0.1.0/24"
+      cidr              = "20.0.1.0/24"
       availability_zone = "ap-northeast-2a"
     }
-    public_subnet_250_0_2 = {
+    public_subnet_20_0_2 = {
       vpc               = "VPC-2"
-      cidr              = "250.0.2.0/24"
+      cidr              = "20.0.2.0/24"
       availability_zone = "ap-northeast-2c"
     }
   }

@@ -58,6 +58,22 @@ resource "aws_security_group" "terraform-default" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # for etcd
+  ingress {
+    from_port	= 2379
+    to_port	= 2379
+    protocol	= "tcp"
+    cidr_blocks	= ["0.0.0.0/0"]
+  }
+
+  # for ceph
+  ingress {
+    from_port	= 6789
+    to_port	= 7300
+    protocol	= "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # Open access to public network
   egress {
     from_port   = 0
