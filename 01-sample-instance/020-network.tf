@@ -5,7 +5,7 @@ resource "aws_vpc" "terraform" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   tags = {
-    Name = "vpc-http"
+    Name = "terraform-cloud"
   }
 }
 
@@ -15,7 +15,7 @@ resource "aws_subnet" "http" {
   cidr_block = var.network_http["cidr"]
   availability_zone = "ap-northeast-2a"
   tags = {
-    Name = "subnet-http"
+    Name = "terraform-cloud"
   }
   depends_on = [aws_internet_gateway.gw]
 }

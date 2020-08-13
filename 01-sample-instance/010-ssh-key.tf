@@ -2,7 +2,7 @@
 
 # Create default ssh publique key
 resource "aws_key_pair" "user_key" {
-  key_name   = "my-demo-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtjwQPOoU46oAnb1Z3s8dp3p/xGEaGpApPliMgZno8+dOOkMai7sIlqrkLFB8SK01MNJVfNQNA3S9IQFpllJ7Z8U6BNKyKz5KR5YbHu+pkhp9qAwg6Rw3bd6CW81aI/TEjgzxOQ0mxtb8P/ku7FHL1W5ABF+bVmKORUfe0iIdbz46NHDA81ucVd4T5dAmu7EgouXdujQ5tU/8F9xWDXPjeBepq6AVY4+03i3oZOJfRPRY3HGxrtDv7aTwtRCjPcWQBSK2zFOz9BghusSWUY5/BUENuth/ijcmPUuqgkzYhN/Y54Z9wBoVbBK+tAr/isK0IzeOU/6+aBHebxITzkaIl"
+  key_name   = "terraform-cloud"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQuFKetE00JqAGirG+cEMmkqUBmopYglOlUrUn5Xa96ZlIcmxFV/qhxymn9QbcJ88wDUIK08qflsIB+Ay4/kuEA9f/glX9uxEpxvzLK36cxtDhuuOmdDKR3+ou1D8OznbxKAOOLau0polLnHQqcxU3/9hwdPrgdAv81WSr+nbXKRm6iUfLA9NxSi0WpkI5/G0DVnaTejWst+eGqZ0O6LhFTrnGfA/PkHWzDC9yl8dC21Aap64iWRq9GaLoYCngHHnCiRSzlljLyA5+npg53p8/YAzRWzN6DddrWb4yFzQRaTqx48CBxdX7g1F+odhyIrUsq9SxDshJZJIWhm9E6e63"
 #  public_key = file("~/.ssh/id_rsa.pub")
 }

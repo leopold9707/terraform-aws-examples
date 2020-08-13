@@ -13,7 +13,7 @@ resource "aws_instance" "http" {
   associate_public_ip_address = true
   user_data = file("scripts/first-boot.sh")
   tags = {
-    Name = "http-instance"
+    Name = "terraform-cloud"
   }
 }
 /*
